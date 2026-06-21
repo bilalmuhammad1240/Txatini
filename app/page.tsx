@@ -14,17 +14,12 @@ const CATEGORY_LABELS: Record<string, string> = {
 export default async function HomePage() {
   const supabase = await createClient();
 
-  const { data: featuredProducts, error } = await supabase
+  const { data: featuredProducts } = await supabase
     .from('products')
     .select('*')
     .eq('active', true)
     .order('created_at', { ascending: false })
     .limit(8);
-
-  // LOG TEMPORÁRIO DE DIAGNÓSTICO — aparece nos Runtime Logs da Vercel
-  console.log('[HomePage] supabase url:', process.env.NEXT_PUBLIC_SUPABASE_URL);
-  console.log('[HomePage] featuredProducts:', featuredProducts);
-  console.log('[HomePage] error:', error);
 
   const products = (featuredProducts as Product[]) ?? [];
 

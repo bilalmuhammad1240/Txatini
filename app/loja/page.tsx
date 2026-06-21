@@ -17,7 +17,7 @@ function LojaContent() {
   );
   const [search, setSearch] = useState('');
 
-  const { products, loading, error, debugInfo } = useProducts({ category, search });
+  const { products, loading, error } = useProducts({ category, search });
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-6">
@@ -43,12 +43,6 @@ function LojaContent() {
         <p className="text-sm text-red-600">
           Não foi possível carregar os produtos. Tenta novamente.
         </p>
-      )}
-
-      {debugInfo && (
-        <pre className="mt-3 whitespace-pre-wrap break-all rounded-lg bg-black/90 p-3 text-[11px] text-green-400">
-          {debugInfo}
-        </pre>
       )}
 
       {!loading && !error && products.length === 0 && (

@@ -13,7 +13,6 @@ export function useProducts(options: UseProductsOptions = {}) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [debugInfo, setDebugInfo] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -41,24 +40,8 @@ export function useProducts(options: UseProductsOptions = {}) {
 
       if (fetchError) {
         setError(fetchError.message);
-        setDebugInfo(
-          JSON.stringify(
-            {
-              url: process.env.NEXT_PUBLIC_SUPABASE_URL,
-              message: fetchError.message,
-              details: fetchError.details,
-              hint: fetchError.hint,
-              code: fetchError.code,
-            },
-            null,
-            2
-          )
-        );
         setProducts([]);
       } else {
-        setDebugInfo(
-          `url: ${process.env.NEXT_PUBLIC_SUPABASE_URL} | rows: ${data?.length ?? 0}`
-        );
         setProducts((data as Product[]) ?? []);
       }
       setLoading(false);
@@ -71,5 +54,5 @@ export function useProducts(options: UseProductsOptions = {}) {
     };
   }, [options.category, options.search]);
 
-  return { products, loading, error, debugInfo };
+  return { products, loading, error };
 }
