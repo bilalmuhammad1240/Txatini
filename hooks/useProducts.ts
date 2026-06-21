@@ -13,6 +13,7 @@ export function useProducts(options: UseProductsOptions = {}) {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [debugInfo, setDebugInfo] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
@@ -36,23 +37,28 @@ export function useProducts(options: UseProductsOptions = {}) {
         ascending: false,
       });
 
-      // LOG TEMPORÁRIO DE DIAGNÓSTICO — remover depois de resolver o problema
-      console.log('[useProducts] supabase url:', process.env.NEXT_PUBLIC_SUPABASE_URL);
-      console.log('[useProducts] data:', data);
-      console.log('[useProducts] error:', fetchError);
-
       if (!isMounted) return;
 
       if (fetchError) {
-        console.error('[useProducts] Erro completo:', {
-          message: fetchError.message,
-          details: fetchError.details,
-          hint: fetchError.hint,
-          code: fetchError.code,
-        });
         setError(fetchError.message);
+        setDebugInfo(
+          JSON.stringify(
+            {
+              url: process.env.NEXT_PUBLIC_SUPABASE_URL,
+              message: fetchError.message,
+              details: fetchError.details,
+              hint: fetchError.hint,
+              code: fetchError.code,
+            },
+            null,
+            2
+          )
+        );
         setProducts([]);
       } else {
+        setDebugInfo(
+          `url: ${process.env.NEXT_PUBLIC_SUPABASE_URL} | rows: ${data?.length ?? 0}`
+        );
         setProducts((data as Product[]) ?? []);
       }
       setLoading(false);
@@ -65,5 +71,5 @@ export function useProducts(options: UseProductsOptions = {}) {
     };
   }, [options.category, options.search]);
 
-  return { products, loading, error };
+  return { products, loading, error, debugInfo };
 }
