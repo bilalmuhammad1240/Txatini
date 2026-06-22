@@ -66,7 +66,10 @@ export default function CheckoutPage() {
 
       if (!response.ok) {
         const data = await response.json().catch(() => ({}));
-        throw new Error(data.error || 'Não foi possível criar o pedido.');
+        const fullMessage = data.details
+          ? `${data.error || 'Erro'} — ${data.details}`
+          : data.error || 'Não foi possível criar o pedido.';
+        throw new Error(fullMessage);
       }
 
       const whatsappMessage = buildOrderMessage({
