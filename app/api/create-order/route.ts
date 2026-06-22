@@ -45,8 +45,8 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Criar pedido
-    const { error: orderError } = await supabase.from('orders').insert({
+    // Criar pedido — só inclui colunas de afiliado se o schema Fase 2 estiver ativo
+    const orderPayload: Record<string, unknown> = {
       id: orderId,
       user_name,
       phone,
@@ -54,9 +54,14 @@ export async function POST(request: NextRequest) {
       delivery_type,
       total,
       status: 'pendente',
-      affiliate_code: validAffiliateCode,
-      commission_amount: commissionAmount,
-    });
+    };
+
+    if (validAffiliateCode) {
+      orderPayload.affiliate_code = validAffiliateCode;
+      orderPayload.commission_amount = commissionAmount;
+    }
+
+    const { error: orderError } = await supabase.from('orders').insert(orderPayload);
 
     if (orderError) {
       console.error('Erro ao criar pedido:', orderError);
