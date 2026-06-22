@@ -1,8 +1,10 @@
 import type { Metadata, Viewport } from 'next';
+import { Suspense } from 'react';
 import '@/styles/globals.css';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import AffiliateTracker from '@/components/AffiliateTracker';
 
 export const metadata: Metadata = {
   title: 'Txatiní — Sabor que lembra casa',
@@ -24,6 +26,9 @@ export default function RootLayout({
   return (
     <html lang="pt">
       <body className="flex min-h-screen flex-col bg-txatini-cream font-sans text-txatini-ink antialiased">
+        <Suspense fallback={null}>
+          <AffiliateTracker />
+        </Suspense>
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

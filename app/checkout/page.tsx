@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useCart } from '@/hooks/useCart';
 import { DeliveryType } from '@/types/order';
 import { buildOrderMessage, buildWhatsAppLink } from '@/lib/whatsapp';
+import { getAffiliateCode, clearAffiliateCode } from '@/lib/affiliate';
 
 export default function CheckoutPage() {
   const { items, totalPrice, clearCart } = useCart();
@@ -52,6 +53,8 @@ export default function CheckoutPage() {
         price: item.product.price,
       }));
 
+      const affiliateCode = getAffiliateCode();
+
       const response = await fetch('/api/create-order', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -61,6 +64,7 @@ export default function CheckoutPage() {
           location: location.trim(),
           delivery_type: deliveryType,
           items: orderItems,
+          ...(affiliateCode ? { affiliate_code: affiliateCode } : {}),
         }),
       });
 
@@ -81,6 +85,7 @@ export default function CheckoutPage() {
       const whatsappLink = buildWhatsAppLink(whatsappMessage);
 
       clearCart();
+      clearAffiliateCode();
       window.open(whatsappLink, '_blank', 'noopener,noreferrer');
       router.push('/pedido-sucesso');
     } catch (err) {
