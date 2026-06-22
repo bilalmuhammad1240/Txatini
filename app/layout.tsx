@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1F4D36',
+  themeColor: '#1A4230',
 };
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt">
-      <body className="flex min-h-screen flex-col bg-txatini-cream font-sans text-txatini-ink">
+      <body className="flex min-h-screen flex-col bg-txatini-cream font-sans text-txatini-ink antialiased">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

@@ -15,13 +15,13 @@ export default function PedidoSucessoPage() {
       <div className="mt-8 flex flex-col gap-3">
         <Link
           href="/loja"
-          className="rounded-xl bg-txatini-orange py-3 text-sm font-bold text-white"
+          className="rounded-lg bg-txatini-orange py-3 text-sm font-bold text-white"
         >
           Voltar à loja
         </Link>
         <Link
           href="/"
-          className="rounded-xl border border-txatini-green/20 bg-white py-3 text-sm font-bold text-txatini-green"
+          className="rounded-lg border border-txatini-green/20 bg-white py-3 text-sm font-bold text-txatini-green"
         >
           Ir para a Home
         </Link>

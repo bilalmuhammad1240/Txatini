@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="w-full rounded-xl border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
+            className="w-full rounded-lg border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
           />
         </div>
 
@@ -65,7 +65,7 @@ export default function AdminLoginPage() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="w-full rounded-xl border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
+            className="w-full rounded-lg border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
           />
         </div>
 
@@ -76,7 +76,7 @@ export default function AdminLoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="mt-2 rounded-xl bg-txatini-green py-3 text-sm font-bold text-white disabled:opacity-50"
+          className="mt-2 rounded-lg bg-txatini-green py-3 text-sm font-bold text-white disabled:opacity-50"
         >
           {loading ? 'A entrar...' : 'Entrar'}
         </button>

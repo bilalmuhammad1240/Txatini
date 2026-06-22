@@ -19,7 +19,7 @@ export default function CarrinhoPage() {
         </p>
         <Link
           href="/loja"
-          className="mt-6 inline-block rounded-xl bg-txatini-orange px-6 py-3 text-sm font-bold text-white"
+          className="mt-6 inline-block rounded-lg bg-txatini-orange px-6 py-3 text-sm font-bold text-white"
         >
           Ver Temperos
         </Link>
@@ -33,13 +33,13 @@ export default function CarrinhoPage() {
         Carrinho
       </h1>
 
-      <div className="rounded-2xl bg-white px-4">
+      <div className="rounded-xl bg-white px-4">
         {items.map((item) => (
           <CartItem key={item.product.id} item={item} />
         ))}
       </div>
 
-      <div className="mt-6 flex items-center justify-between rounded-2xl bg-white p-4">
+      <div className="mt-6 flex items-center justify-between rounded-xl bg-white p-4">
         <span className="text-sm font-semibold text-txatini-ink/70">
           Total
         </span>
@@ -50,7 +50,7 @@ export default function CarrinhoPage() {
 
       <Link
         href="/checkout"
-        className="mt-4 block rounded-xl bg-txatini-orange py-3 text-center text-sm font-bold text-white"
+        className="mt-4 block rounded-lg bg-txatini-orange py-3 text-center text-sm font-bold text-white"
       >
         Finalizar pedido
       </Link>

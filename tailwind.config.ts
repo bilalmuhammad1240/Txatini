@@ -9,10 +9,11 @@ const config: Config = {
     extend: {
       colors: {
         txatini: {
-          green: '#1F4D36', // verde escuro - confiança
-          orange: '#D9641E', // laranja queimado - comida, calor
-          cream: '#F5EDE0', // bege claro - base caseira
-          ink: '#262220', // preto suave - texto
+          green: '#1A4230',    // verde mais fundo — mais peso, menos brilho
+          orange: '#B85215',   // laranja mais queimado — menos saturado
+          cream: '#E8DCCB',    // bege mais escuro e quente — muito menos reflectivo
+          surface: '#F4EEE4',  // superfície dos cards — entre cream e branco
+          ink: '#1E1C1A',      // texto quase-preto mais quente
         },
       },
       fontFamily: {

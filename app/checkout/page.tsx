@@ -25,7 +25,7 @@ export default function CheckoutPage() {
         </p>
         <button
           onClick={() => router.push('/loja')}
-          className="mt-4 rounded-xl bg-txatini-orange px-6 py-3 text-sm font-bold text-white"
+          className="mt-4 rounded-lg bg-txatini-orange px-6 py-3 text-sm font-bold text-white"
         >
           Ver Temperos
         </button>
@@ -100,7 +100,7 @@ export default function CheckoutPage() {
         Checkout
       </h1>
 
-      <div className="mb-5 rounded-2xl bg-white p-4">
+      <div className="mb-5 rounded-xl bg-white p-4">
         <div className="flex items-center justify-between text-sm">
           <span className="text-txatini-ink/70">
             {items.length} {items.length === 1 ? 'produto' : 'produtos'}
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="O teu nome"
-            className="w-full rounded-xl border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
+            className="w-full rounded-lg border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
           />
         </div>
 
@@ -134,7 +134,7 @@ export default function CheckoutPage() {
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
             placeholder="84xxxxxxx"
-            className="w-full rounded-xl border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
+            className="w-full rounded-lg border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
           />
         </div>
 
@@ -147,7 +147,7 @@ export default function CheckoutPage() {
             value={location}
             onChange={(e) => setLocation(e.target.value)}
             placeholder="Ex: Bairro Central, Maputo"
-            className="w-full rounded-xl border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
+            className="w-full rounded-lg border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
           />
         </div>
 
@@ -159,7 +159,7 @@ export default function CheckoutPage() {
             <button
               type="button"
               onClick={() => setDeliveryType('entrega')}
-              className={`flex-1 rounded-xl border-2 py-3 text-sm font-bold ${
+              className={`flex-1 rounded-lg border-2 py-3 text-sm font-bold ${
                 deliveryType === 'entrega'
                   ? 'border-txatini-green bg-txatini-green text-white'
                   : 'border-txatini-green/20 bg-white text-txatini-ink'
@@ -170,7 +170,7 @@ export default function CheckoutPage() {
             <button
               type="button"
               onClick={() => setDeliveryType('recolha')}
-              className={`flex-1 rounded-xl border-2 py-3 text-sm font-bold ${
+              className={`flex-1 rounded-lg border-2 py-3 text-sm font-bold ${
                 deliveryType === 'recolha'
                   ? 'border-txatini-green bg-txatini-green text-white'
                   : 'border-txatini-green/20 bg-white text-txatini-ink'
@@ -188,7 +188,7 @@ export default function CheckoutPage() {
         <button
           type="submit"
           disabled={submitting}
-          className="mt-2 rounded-xl bg-txatini-orange py-3 text-sm font-bold text-white disabled:opacity-50"
+          className="mt-2 rounded-lg bg-txatini-orange py-3 text-sm font-bold text-white disabled:opacity-50"
         >
           {submitting ? 'A enviar...' : 'Finalizar pedido no WhatsApp'}
         </button>

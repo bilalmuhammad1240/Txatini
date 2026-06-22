@@ -20,15 +20,15 @@ function LojaContent() {
   const { products, loading, error } = useProducts({ category, search });
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-6">
-      <h1 className="mb-4 text-xl font-extrabold text-txatini-green">Loja</h1>
+    <div className="mx-auto max-w-5xl px-5 py-7">
+      <h1 className="mb-5 text-xl font-extrabold text-txatini-green">Loja</h1>
 
       <input
         type="text"
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Pesquisar tempero..."
-        className="mb-4 w-full rounded-xl border border-txatini-green/20 bg-white px-4 py-3 text-sm outline-none focus:border-txatini-orange"
+        className="mb-4 w-full rounded-lg border border-txatini-green/20 bg-txatini-surface px-4 py-3 text-sm outline-none focus:border-txatini-orange"
       />
 
       <div className="mb-6">
@@ -36,7 +36,7 @@ function LojaContent() {
       </div>
 
       {loading && (
-        <p className="text-sm text-txatini-ink/60">A carregar produtos...</p>
+        <p className="text-sm text-txatini-ink/50">A carregar produtos...</p>
       )}
 
       {error && (
@@ -46,13 +46,13 @@ function LojaContent() {
       )}
 
       {!loading && !error && products.length === 0 && (
-        <p className="text-sm text-txatini-ink/60">
+        <p className="text-sm text-txatini-ink/50">
           Nenhum produto encontrado.
         </p>
       )}
 
       {!loading && products.length > 0 && (
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-4">
           {products.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
@@ -66,7 +66,7 @@ export default function LojaPage() {
   return (
     <Suspense
       fallback={
-        <div className="mx-auto max-w-5xl px-4 py-6 text-sm text-txatini-ink/60">
+        <div className="mx-auto max-w-5xl px-5 py-7 text-sm text-txatini-ink/50">
           A carregar...
         </div>
       }
