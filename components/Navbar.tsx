@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import Logo from '@/components/Logo';
+import Image from 'next/image';
 import { useCart } from '@/hooks/useCart';
 
 export default function Navbar() {
@@ -10,7 +10,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-txatini-green/10 bg-txatini-cream/95 backdrop-blur">
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-5 py-3">
-        <Logo variant="dark" size="md" href="/" />
+        <Link href="/" aria-label="Txatiní — página principal">
+          <Image
+            src="/logo.png"
+            alt="Txatiní"
+            width={100}
+            height={34}
+            className="object-contain"
+            priority
+          />
+        </Link>
 
         <div className="flex items-center gap-5 text-sm font-semibold text-txatini-ink">
           <Link href="/loja" className="hover:text-txatini-orange transition-colors">
