@@ -6,7 +6,7 @@ import { randomUUID } from 'crypto';
 export async function POST(request: NextRequest) {
   try {
     const body: NewOrderInput & { affiliate_code?: string } = await request.json();
-    const { user_name, phone, location, delivery_type, items, affiliate_code } = body;
+    const { user_name, phone, location, delivery_type, payment_method, mpesa_number, items, affiliate_code } = body;
 
     if (!user_name || !phone || !location || !items || items.length === 0) {
       return NextResponse.json(
@@ -54,8 +54,11 @@ export async function POST(request: NextRequest) {
       delivery_type,
       total,
       status: 'pendente',
+      payment_method: payment_method || 'whatsapp',
+      payment_status: 'pendente',
     };
 
+    if (mpesa_number) orderPayload.mpesa_number = mpesa_number;
     if (validAffiliateCode) {
       orderPayload.affiliate_code = validAffiliateCode;
       orderPayload.commission_amount = commissionAmount;

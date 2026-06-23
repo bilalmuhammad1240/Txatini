@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { createClient } from '@/lib/supabase/server';
 import { Product } from '@/types/product';
+import { SettingsMap } from '@/types/settings';
 import ProductCard from '@/components/ProductCard';
+import HeroBanner from '@/components/HeroBanner';
 
 const CATEGORY_LABELS: Record<string, string> = {
   tempero: 'Temperos',
@@ -14,42 +16,29 @@ const CATEGORY_LABELS: Record<string, string> = {
 export default async function HomePage() {
   const supabase = await createClient();
 
-  const { data: featuredProducts } = await supabase
-    .from('products')
-    .select('*')
-    .eq('active', true)
-    .order('created_at', { ascending: false })
-    .limit(8);
+  const [{ data: featuredProducts }, { data: settingsRows }] = await Promise.all([
+    supabase
+      .from('products')
+      .select('*')
+      .eq('active', true)
+      .order('created_at', { ascending: false })
+      .limit(8),
+    supabase.from('settings').select('key, value'),
+  ]);
 
   const products = (featuredProducts as Product[]) ?? [];
 
-  const categories = Array.from(
-    new Set(products.map((p) => p.category))
-  ).slice(0, 5);
+  const settings: SettingsMap = Object.fromEntries(
+    (settingsRows ?? []).map((r: { key: string; value: string }) => [r.key, r.value])
+  );
+
+  const tagline = settings.store_tagline || 'Sabor que lembra casa';
+
+  const categories = Array.from(new Set(products.map((p) => p.category))).slice(0, 5);
 
   return (
     <div>
-      {/* Hero — verde escuro, sem gradiente, sem brilho */}
-      <section className="bg-txatini-green px-5 py-14 text-center text-white">
-        <p className="text-xs font-semibold uppercase tracking-widest text-white/50">
-          Txatiní
-        </p>
-        <h1 className="mt-2 text-3xl font-extrabold leading-tight sm:text-4xl">
-          Sabor que lembra casa
-        </h1>
-        <p className="mx-auto mt-3 max-w-md text-sm leading-relaxed text-white/70">
-          Temperos para a tua comida do dia a dia. Sabor garantido, sem
-          complicação.
-        </p>
-        <div className="mt-7">
-          <Link
-            href="/loja"
-            className="inline-block rounded-lg bg-txatini-orange px-8 py-3 text-sm font-bold text-white"
-          >
-            Ver Temperos
-          </Link>
-        </div>
-      </section>
+      <HeroBanner tagline={tagline} />
 
       {/* Categorias */}
       {categories.length > 0 && (

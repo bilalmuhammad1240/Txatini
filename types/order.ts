@@ -1,13 +1,15 @@
 export type OrderStatus = 'pendente' | 'em_preparacao' | 'entregue';
 export type DeliveryType = 'entrega' | 'recolha';
+export type PaymentMethod = 'whatsapp' | 'mpesa';
+export type PaymentStatus = 'pendente' | 'confirmado' | 'falhado';
 
 export interface OrderItem {
   id: string;
   order_id: string;
-  product_id: string | null; // pode ficar null se o produto for apagado depois
-  product_name: string; // snapshot do nome no momento da compra
+  product_id: string | null;
+  product_name: string;
   quantity: number;
-  price: number; // preço unitário no momento da compra
+  price: number;
 }
 
 export interface Order {
@@ -18,6 +20,11 @@ export interface Order {
   delivery_type: DeliveryType;
   total: number;
   status: OrderStatus;
+  payment_method: PaymentMethod;
+  mpesa_number: string | null;
+  payment_status: PaymentStatus;
+  affiliate_code: string | null;
+  commission_amount: number | null;
   created_at: string;
   order_items?: OrderItem[];
 }
@@ -27,6 +34,8 @@ export interface NewOrderInput {
   phone: string;
   location: string;
   delivery_type: DeliveryType;
+  payment_method: PaymentMethod;
+  mpesa_number?: string;
   items: {
     product_id: string;
     product_name: string;
