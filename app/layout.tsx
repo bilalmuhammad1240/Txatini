@@ -5,6 +5,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import AffiliateTracker from '@/components/AffiliateTracker';
+import CartFab from '@/components/CartFab';
 
 export const metadata: Metadata = {
   title: 'Txatiní — Sabor que lembra casa',
@@ -15,7 +16,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  themeColor: '#1A4230',
+  themeColor: '#1E5C2A',
 };
 
 export default function RootLayout({
@@ -33,6 +34,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <Footer />
         <WhatsAppButton />
+        <CartFab />
       </body>
     </html>
   );
