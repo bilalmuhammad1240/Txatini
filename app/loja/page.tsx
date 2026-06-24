@@ -36,7 +36,7 @@ function LojaContent() {
       </div>
 
       {loading && (
-        <p className="text-sm text-txatini-ink/50">A carregar produtos...</p>
+        <p className="text-sm text-txatini-muted">A carregar produtos...</p>
       )}
 
       {error && (
@@ -46,7 +46,7 @@ function LojaContent() {
       )}
 
       {!loading && !error && products.length === 0 && (
-        <p className="text-sm text-txatini-ink/50">
+        <p className="text-sm text-txatini-muted">
           Nenhum produto encontrado.
         </p>
       )}
@@ -66,7 +66,7 @@ export default function LojaPage() {
   return (
     <Suspense
       fallback={
-        <div className="mx-auto max-w-5xl px-5 py-7 text-sm text-txatini-ink/50">
+        <div className="mx-auto max-w-5xl px-5 py-7 text-sm text-txatini-muted">
           A carregar...
         </div>
       }

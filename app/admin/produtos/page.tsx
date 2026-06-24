@@ -56,11 +56,11 @@ export default function AdminProdutosPage() {
       </div>
 
       {loading && (
-        <p className="text-sm text-txatini-ink/60">A carregar...</p>
+        <p className="text-sm text-txatini-muted">A carregar...</p>
       )}
 
       {!loading && products.length === 0 && (
-        <p className="text-sm text-txatini-ink/60">
+        <p className="text-sm text-txatini-muted">
           Ainda não tens produtos. Cria o primeiro.
         </p>
       )}

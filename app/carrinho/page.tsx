@@ -14,7 +14,7 @@ export default function CarrinhoPage() {
         <h1 className="mt-3 text-lg font-extrabold text-txatini-ink">
           O teu carrinho está vazio
         </h1>
-        <p className="mt-1 text-sm text-txatini-ink/60">
+        <p className="mt-1 text-sm text-txatini-muted">
           Adiciona temperos para continuar.
         </p>
         <Link
@@ -42,7 +42,7 @@ export default function CarrinhoPage() {
 
       {/* Total */}
       <div className="mt-4 flex items-center justify-between rounded-xl bg-txatini-surface p-4">
-        <span className="text-sm font-semibold text-txatini-ink/70">Total</span>
+        <span className="text-sm font-semibold text-txatini-muted">Total</span>
         <span className="text-xl font-extrabold text-txatini-green">
           {totalPrice} MZN
         </span>

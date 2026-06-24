@@ -38,7 +38,7 @@ export default function AdminLoginPage() {
       <h1 className="mb-1 text-xl font-extrabold text-txatini-green">
         Txatiní Admin
       </h1>
-      <p className="mb-6 text-sm text-txatini-ink/60">
+      <p className="mb-6 text-sm text-txatini-muted">
         Acesso restrito à equipa.
       </p>
 

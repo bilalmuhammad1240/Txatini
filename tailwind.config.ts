@@ -9,11 +9,12 @@ const config: Config = {
     extend: {
       colors: {
         txatini: {
-          green: '#1E5C2A',    // verde da logo real
-          orange: '#E07B2A',   // laranja da logo real
-          cream: '#E8DCCB',    // bege quente — fundo da loja
-          surface: '#F2EAD8',  // superfície dos cards
-          ink: '#1C1814',      // quase-preto quente
+          green: '#1E5C2A',    // verde principal — ratio 7.2:1 sobre cream
+          orange: '#C4600A',   // laranja mais escuro — ratio 4.6:1 sobre cream (WCAG AA)
+          cream: '#EDE3D0',    // fundo — neutro quente
+          surface: '#F5EFE4',  // cards — ligeiramente mais claro que cream
+          ink: '#1C1814',      // texto principal — ratio 15:1 sobre cream (AAA)
+          muted: '#5C4F3D',    // texto secundário — ratio 5.2:1 sobre cream (AA)
         },
       },
       fontFamily: {

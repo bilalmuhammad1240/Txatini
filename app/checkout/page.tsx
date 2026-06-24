@@ -35,7 +35,7 @@ export default function CheckoutPage() {
   if (items.length === 0) {
     return (
       <div className="mx-auto max-w-md px-5 py-16 text-center">
-        <p className="text-sm text-txatini-ink/60">O teu carrinho está vazio.</p>
+        <p className="text-sm text-txatini-muted">O teu carrinho está vazio.</p>
         <button
           onClick={() => router.push('/loja')}
           className="mt-4 rounded-lg bg-txatini-orange px-6 py-3 text-sm font-bold text-white"
@@ -130,7 +130,7 @@ export default function CheckoutPage() {
 
       {/* Resumo do pedido */}
       <div className="mb-5 flex items-center justify-between rounded-xl bg-txatini-surface p-4">
-        <span className="text-sm text-txatini-ink/70">
+        <span className="text-sm text-txatini-muted">
           {items.length} {items.length === 1 ? 'produto' : 'produtos'}
         </span>
         <span className="text-lg font-extrabold text-txatini-green">
@@ -243,7 +243,7 @@ export default function CheckoutPage() {
               </ol>
               <div className="mt-2 rounded-lg bg-white p-3 text-center">
                 <p className="text-lg font-extrabold text-txatini-ink">{mpesaStoreNumber}</p>
-                <p className="text-xs text-txatini-ink/60">{mpesaStoreName}</p>
+                <p className="text-xs text-txatini-muted">{mpesaStoreName}</p>
               </div>
               <div className="mt-3">
                 <label className="mb-1 block text-xs font-semibold text-txatini-ink">

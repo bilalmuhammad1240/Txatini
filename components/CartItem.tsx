@@ -60,7 +60,7 @@ export default function CartItem({ item }: CartItemProps) {
       <button
         onClick={() => removeItem(product.id)}
         aria-label="Remover item"
-        className="ml-1 text-txatini-ink/40 hover:text-red-500"
+        className="ml-1 text-txatini-muted hover:text-red-500"
       >
         ✕
       </button>

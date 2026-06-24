@@ -75,16 +75,16 @@ export default function AdminRevendedoresPage() {
 
       {/* Resumo de comissões por pagar */}
       <div className="mb-5 rounded-xl border border-txatini-green/10 bg-txatini-surface p-4">
-        <p className="text-sm text-txatini-ink/60">Comissões por pagar</p>
+        <p className="text-sm text-txatini-muted">Comissões por pagar</p>
         <p className="mt-1 text-2xl font-extrabold text-txatini-green">
           {totalPendente.toFixed(2)} MZN
         </p>
       </div>
 
-      {loading && <p className="text-sm text-txatini-ink/50">A carregar...</p>}
+      {loading && <p className="text-sm text-txatini-muted">A carregar...</p>}
 
       {!loading && affiliates.length === 0 && (
-        <p className="text-sm text-txatini-ink/50">
+        <p className="text-sm text-txatini-muted">
           Nenhum pedido de revendedor ainda.
         </p>
       )}
@@ -109,7 +109,7 @@ export default function AdminRevendedoresPage() {
                   <p className="truncate text-sm font-bold text-txatini-ink">
                     {aff.name}
                   </p>
-                  <p className="text-xs text-txatini-ink/60">
+                  <p className="text-xs text-txatini-muted">
                     {aff.phone} · código: <span className="font-bold">{aff.code}</span>
                   </p>
                 </div>
@@ -128,7 +128,7 @@ export default function AdminRevendedoresPage() {
 
                   {/* Link do revendedor */}
                   <div className="mb-4">
-                    <p className="mb-1 text-xs font-semibold text-txatini-ink/60">
+                    <p className="mb-1 text-xs font-semibold text-txatini-muted">
                       Link pessoal
                     </p>
                     <p className="break-all rounded-lg bg-white px-3 py-2 text-xs font-mono text-txatini-green">
@@ -138,7 +138,7 @@ export default function AdminRevendedoresPage() {
 
                   {/* Comissão % editável */}
                   <div className="mb-4 flex items-center gap-3">
-                    <p className="text-xs font-semibold text-txatini-ink/60">
+                    <p className="text-xs font-semibold text-txatini-muted">
                       Comissão:
                     </p>
                     {editingPct?.id === aff.id ? (
@@ -160,7 +160,7 @@ export default function AdminRevendedoresPage() {
                         </button>
                         <button
                           onClick={() => setEditingPct(null)}
-                          className="text-xs text-txatini-ink/50"
+                          className="text-xs text-txatini-muted"
                         >
                           Cancelar
                         </button>
@@ -178,13 +178,13 @@ export default function AdminRevendedoresPage() {
                   {/* Resumo de ganhos */}
                   <div className="mb-4 grid grid-cols-2 gap-3">
                     <div className="rounded-lg bg-white p-3">
-                      <p className="text-xs text-txatini-ink/60">Total ganho</p>
+                      <p className="text-xs text-txatini-muted">Total ganho</p>
                       <p className="text-base font-extrabold text-txatini-green">
                         {totalEarned.toFixed(2)} MZN
                       </p>
                     </div>
                     <div className="rounded-lg bg-white p-3">
-                      <p className="text-xs text-txatini-ink/60">Já pago</p>
+                      <p className="text-xs text-txatini-muted">Já pago</p>
                       <p className="text-base font-extrabold text-txatini-ink">
                         {totalPaid.toFixed(2)} MZN
                       </p>
@@ -194,13 +194,13 @@ export default function AdminRevendedoresPage() {
                   {/* Comissões individuais */}
                   {affCommissions.length > 0 && (
                     <div className="mb-4">
-                      <p className="mb-2 text-xs font-semibold text-txatini-ink/60">
+                      <p className="mb-2 text-xs font-semibold text-txatini-muted">
                         Histórico de comissões
                       </p>
                       <div className="flex flex-col gap-2">
                         {affCommissions.map((c) => (
                           <div key={c.id} className="flex items-center justify-between rounded-lg bg-white px-3 py-2 text-xs">
-                            <span className="text-txatini-ink/70">
+                            <span className="text-txatini-muted">
                               {new Date(c.created_at).toLocaleDateString('pt-PT')}
                               {' · '}pedido {c.order_total.toFixed(0)} MZN
                             </span>

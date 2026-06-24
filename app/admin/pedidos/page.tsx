@@ -85,9 +85,9 @@ export default function AdminPedidosPage() {
         ))}
       </div>
 
-      {loading && <p className="text-sm text-txatini-ink/50">A carregar...</p>}
+      {loading && <p className="text-sm text-txatini-muted">A carregar...</p>}
       {!loading && orders.length === 0 && (
-        <p className="text-sm text-txatini-ink/50">Nenhum pedido encontrado.</p>
+        <p className="text-sm text-txatini-muted">Nenhum pedido encontrado.</p>
       )}
 
       <div className="flex flex-col gap-3">
@@ -108,7 +108,7 @@ export default function AdminPedidosPage() {
                   <p className="truncate text-sm font-bold text-txatini-ink">
                     {order.user_name} · {order.phone}
                   </p>
-                  <p className="text-xs text-txatini-ink/60">
+                  <p className="text-xs text-txatini-muted">
                     {new Date(order.created_at).toLocaleString('pt-PT')}
                   </p>
                   <div className="mt-1 flex flex-wrap gap-1">
@@ -129,7 +129,7 @@ export default function AdminPedidosPage() {
 
               {isExpanded && (
                 <div className="border-t border-txatini-green/10 p-4">
-                  <p className="text-xs font-semibold text-txatini-ink/60 mb-3">
+                  <p className="text-xs font-semibold text-txatini-muted mb-3">
                     {order.delivery_type === 'entrega' ? 'Entrega' : 'Recolha'} · {order.location}
                   </p>
 
@@ -176,7 +176,7 @@ export default function AdminPedidosPage() {
 
                   {/* Afiliado */}
                   {order.affiliate_code && (
-                    <p className="mb-3 text-xs text-txatini-ink/60">
+                    <p className="mb-3 text-xs text-txatini-muted">
                       Revendedor: <strong>{order.affiliate_code}</strong> · comissão:{' '}
                       {order.commission_amount} MZN
                     </p>

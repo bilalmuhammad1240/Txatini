@@ -21,7 +21,7 @@ function PedidoSucessoContent() {
 
       {isMpesa ? (
         <div className="mt-4 text-left">
-          <p className="text-center text-sm text-txatini-ink/70 mb-5">
+          <p className="text-center text-sm text-txatini-muted mb-5">
             Para completar a tua encomenda, envia o pagamento por M-Pesa:
           </p>
           <div className="rounded-xl border border-[#E2001A]/20 bg-red-50 p-5">
@@ -30,7 +30,7 @@ function PedidoSucessoContent() {
             </p>
             <div className="rounded-lg bg-white p-4 text-center mb-3">
               <p className="text-2xl font-extrabold text-txatini-ink">{mpesaNum}</p>
-              <p className="text-sm text-txatini-ink/60">{decodeURIComponent(mpesaNome || '')}</p>
+              <p className="text-sm text-txatini-muted">{decodeURIComponent(mpesaNome || '')}</p>
             </div>
             <p className="text-center text-lg font-extrabold text-txatini-green">
               {total} MZN
@@ -42,12 +42,12 @@ function PedidoSucessoContent() {
               <li>4. Guarda o comprovativo</li>
             </ol>
           </div>
-          <p className="mt-4 text-center text-xs text-txatini-ink/60">
+          <p className="mt-4 text-center text-xs text-txatini-muted">
             Vamos confirmar o pagamento e contactar-te pelo WhatsApp.
           </p>
         </div>
       ) : (
-        <p className="mt-2 text-sm leading-relaxed text-txatini-ink/70">
+        <p className="mt-2 text-sm leading-relaxed text-txatini-muted">
           Confirma o teu pedido na conversa que abrimos no WhatsApp. Vamos
           responder o mais rápido possível.
         </p>
@@ -73,7 +73,7 @@ function PedidoSucessoContent() {
 
 export default function PedidoSucessoPage() {
   return (
-    <Suspense fallback={<div className="py-20 text-center text-sm text-txatini-ink/50">A carregar...</div>}>
+    <Suspense fallback={<div className="py-20 text-center text-sm text-txatini-muted">A carregar...</div>}>
       <PedidoSucessoContent />
     </Suspense>
   );

@@ -23,8 +23,8 @@ export default function Footer() {
           <span className="text-base font-extrabold text-txatini-green">TXATINÍ</span>
         )}
       </div>
-      <p className="text-xs text-txatini-ink/50">Sabor que lembra casa.</p>
-      <p className="mt-4 text-xs text-txatini-ink/40">
+      <p className="text-xs text-txatini-muted">Sabor que lembra casa.</p>
+      <p className="mt-4 text-xs text-txatini-muted">
         © {new Date().getFullYear()} Txatiní. Todos os direitos reservados.
       </p>
     </footer>

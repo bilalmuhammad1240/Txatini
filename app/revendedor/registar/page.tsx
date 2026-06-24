@@ -82,7 +82,7 @@ export default function RegistarRevendedorPage() {
       <h1 className="mb-1 text-xl font-extrabold text-txatini-green">
         Torna-te revendedor
       </h1>
-      <p className="mb-6 text-sm leading-relaxed text-txatini-ink/70">
+      <p className="mb-6 text-sm leading-relaxed text-txatini-muted">
         Partilha o teu link pessoal e ganha comissão em cada venda que
         gerares. Gratuito e sem compromisso.
       </p>
@@ -129,7 +129,7 @@ export default function RegistarRevendedorPage() {
 
         <div>
           <label className="mb-1 block text-sm font-semibold text-txatini-ink">
-            Email <span className="font-normal text-txatini-ink/50">(opcional)</span>
+            Email <span className="font-normal text-txatini-muted">(opcional)</span>
           </label>
           <input
             type="email"

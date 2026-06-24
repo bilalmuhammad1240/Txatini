@@ -98,14 +98,14 @@ export default function AdminConfiguracoesPage() {
       </div>
 
       {loading && (
-        <p className="text-sm text-txatini-ink/50">A carregar...</p>
+        <p className="text-sm text-txatini-muted">A carregar...</p>
       )}
 
       {!loading && (
         <div className="flex flex-col gap-6">
           {SETTING_GROUPS.map((group) => (
             <div key={group.title}>
-              <h2 className="mb-3 text-sm font-extrabold uppercase tracking-wider text-txatini-ink/40">
+              <h2 className="mb-3 text-sm font-extrabold uppercase tracking-wider text-txatini-muted">
                 {group.title}
               </h2>
               <div className="flex flex-col gap-3">
@@ -132,17 +132,17 @@ export default function AdminConfiguracoesPage() {
                       }`}
                     />
                     {key === 'whatsapp_number' && (
-                      <p className="mt-1 text-xs text-txatini-ink/50">
+                      <p className="mt-1 text-xs text-txatini-muted">
                         Formato: 258XXXXXXXXX (sem + nem espaços)
                       </p>
                     )}
                     {key === 'default_commission' && (
-                      <p className="mt-1 text-xs text-txatini-ink/50">
+                      <p className="mt-1 text-xs text-txatini-muted">
                         Percentagem aplicada a novos revendedores (ex: 10)
                       </p>
                     )}
                     {key === 'delivery_fee' && (
-                      <p className="mt-1 text-xs text-txatini-ink/50">
+                      <p className="mt-1 text-xs text-txatini-muted">
                         0 = entrega gratuita
                       </p>
                     )}

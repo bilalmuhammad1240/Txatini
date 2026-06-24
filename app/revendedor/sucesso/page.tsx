@@ -7,7 +7,7 @@ export default function RevendedorSucessoPage() {
       <h1 className="mt-4 text-xl font-extrabold text-txatini-green">
         Pedido enviado!
       </h1>
-      <p className="mt-2 text-sm leading-relaxed text-txatini-ink/70">
+      <p className="mt-2 text-sm leading-relaxed text-txatini-muted">
         Recebemos o teu pedido para te tornares revendedor Txatiní. Vamos
         analisar e entrar em contacto via WhatsApp em até 24 horas com o
         teu link pessoal.

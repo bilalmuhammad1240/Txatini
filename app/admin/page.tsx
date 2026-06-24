@@ -34,7 +34,7 @@ export default async function AdminDashboardPage() {
             key={stat.label}
             className="rounded-2xl border border-txatini-green/10 bg-white p-5"
           >
-            <p className="text-sm text-txatini-ink/60">{stat.label}</p>
+            <p className="text-sm text-txatini-muted">{stat.label}</p>
             <p className="mt-1 text-3xl font-extrabold text-txatini-green">
               {stat.value}
             </p>

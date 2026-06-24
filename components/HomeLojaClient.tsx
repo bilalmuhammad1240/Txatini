@@ -42,7 +42,7 @@ export default function HomeLojaClient({ initialProducts }: HomeLojaClientProps)
       {/* Pesquisa */}
       <div className="relative mb-4">
         <svg
-          className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-txatini-ink/40"
+          className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-txatini-muted"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
         >
           <circle cx="11" cy="11" r="8" />
@@ -78,7 +78,7 @@ export default function HomeLojaClient({ initialProducts }: HomeLojaClientProps)
 
       {/* Contagem de resultados */}
       {search && (
-        <p className="mb-3 text-xs text-txatini-ink/50">
+        <p className="mb-3 text-xs text-txatini-muted">
           {filtered.length} {filtered.length === 1 ? 'produto encontrado' : 'produtos encontrados'}
         </p>
       )}
@@ -86,7 +86,7 @@ export default function HomeLojaClient({ initialProducts }: HomeLojaClientProps)
       {/* Grid de produtos */}
       {filtered.length === 0 ? (
         <div className="py-10 text-center">
-          <p className="text-sm text-txatini-ink/50">Nenhum produto encontrado.</p>
+          <p className="text-sm text-txatini-muted">Nenhum produto encontrado.</p>
           {search && (
             <button
               onClick={() => setSearch('')}
