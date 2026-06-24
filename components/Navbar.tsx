@@ -18,9 +18,10 @@ export default function Navbar() {
             <Image
               src="/logo.png"
               alt="Txatiní"
-              width={80}
-              height={40}
+              width={72}
+              height={36}
               className="object-contain"
+              style={{ mixBlendMode: 'multiply' }} // remove fundo branco — funde com o cream
               priority
               onError={() => setLogoError(true)}
             />

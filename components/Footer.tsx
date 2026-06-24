@@ -14,9 +14,10 @@ export default function Footer() {
           <Image
             src="/logo.png"
             alt="Txatiní"
-            width={72}
-            height={36}
+            width={64}
+            height={32}
             className="object-contain"
+            style={{ mixBlendMode: 'multiply' }}
             onError={() => setLogoError(true)}
           />
         ) : (
