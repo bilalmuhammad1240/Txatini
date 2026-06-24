@@ -9,9 +9,9 @@ const config: Config = {
     extend: {
       colors: {
         txatini: {
-          green: '#0F2A1E',    // verde muito escuro — profundo, evoca noite de cozinha
-          orange: '#E07B2A',   // laranja-açafrão — mais dourado, menos néon
-          cream: '#E8DCCB',    // bege quente — menos reflectivo
+          green: '#1E5C2A',    // verde da logo real
+          orange: '#E07B2A',   // laranja da logo real
+          cream: '#E8DCCB',    // bege quente — fundo da loja
           surface: '#F2EAD8',  // superfície dos cards
           ink: '#1C1814',      // quase-preto quente
         },
