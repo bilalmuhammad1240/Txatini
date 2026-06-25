@@ -10,7 +10,7 @@ const config: Config = {
       colors: {
         txatini: {
           green: '#1E5C2A',    // verde principal — ratio 7.2:1 sobre cream
-          orange: '#C4600A',   // laranja mais escuro — ratio 4.6:1 sobre cream (WCAG AA)
+          orange: '#B85510',   // laranja escuro — ratio 4.7:1 com branco (WCAG AA ✓)
           cream: '#EDE3D0',    // fundo — neutro quente
           surface: '#F5EFE4',  // cards — ligeiramente mais claro que cream
           ink: '#1C1814',      // texto principal — ratio 15:1 sobre cream (AAA)

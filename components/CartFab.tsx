@@ -27,7 +27,8 @@ export default function CartFab() {
       {/* Badge de quantidade */}
       <span
         className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full text-xs font-bold text-white"
-        style={{ background: '#C4600A' }}
+        style={{ background: '#B85510' }}
+        aria-hidden="true"
       >
         {totalItems}
       </span>

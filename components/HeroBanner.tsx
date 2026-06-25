@@ -29,7 +29,7 @@ export default function HeroBanner({ tagline: _tagline }: HeroBannerProps) {
         ) : (
           /* Fallback quando banner não carrega */
           <div className="flex h-full flex-col items-start justify-center px-5" style={{ background: '#1E5C2A' }}>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#C4600A' }}>
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#B85510' }}>
               Temperos Moçambicanos
             </p>
             <h1 className="text-3xl font-extrabold leading-tight text-white">
@@ -52,7 +52,7 @@ export default function HeroBanner({ tagline: _tagline }: HeroBannerProps) {
           <Link
             href="/loja"
             className="flex-1 rounded-lg py-2.5 text-center text-sm font-bold text-white"
-            style={{ background: '#C4600A' }}
+            style={{ background: '#B85510' }}
           >
             Ver Temperos
           </Link>

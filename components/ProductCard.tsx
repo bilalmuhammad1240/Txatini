@@ -13,7 +13,7 @@ export default function ProductCard({ product }: ProductCardProps) {
   const { addItem } = useCart();
 
   return (
-    <div className="flex flex-col overflow-hidden rounded-xl border border-txatini-green/8 bg-txatini-surface shadow-sm">
+    <div className="flex flex-col overflow-hidden rounded-xl border border-txatini-green/10 bg-txatini-surface shadow-sm">
       <Link href={`/loja/${product.id}`} className="block">
         <div className="relative aspect-square w-full bg-txatini-cream overflow-hidden">
           {product.image_url ? (
@@ -54,6 +54,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <button
           onClick={() => addItem(product, 1)}
           disabled={product.stock <= 0}
+          aria-label={`Adicionar ${product.name} ao carrinho`}
           className="mt-auto rounded-lg bg-txatini-orange py-2 text-sm font-bold text-white transition-opacity active:opacity-80 disabled:opacity-40"
         >
           Adicionar
