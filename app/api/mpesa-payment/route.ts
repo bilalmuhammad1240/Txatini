@@ -15,6 +15,17 @@ export async function POST(request: NextRequest) {
     }
 
     // Iniciar pagamento M-Pesa
+    console.log('[M-Pesa] Iniciando C2B:', {
+      orderId,
+      amount,
+      msisdn: customerMsisdn,
+      reference: `TXATINI-${orderReference}`.slice(0, 20),
+      env: process.env.MPESA_ENV,
+      hasApiKey: !!process.env.MPESA_API_KEY,
+      hasPublicKey: !!process.env.MPESA_PUBLIC_KEY,
+      hasProviderCode: !!process.env.MPESA_SERVICE_PROVIDER_CODE,
+    });
+
     const result = await initiateC2B({
       amount: Number(amount),
       customerMsisdn: String(customerMsisdn),
@@ -23,6 +34,8 @@ export async function POST(request: NextRequest) {
     });
 
     const supabase = await createClient();
+
+    console.log('[M-Pesa] Resultado:', result);
 
     if (result.success) {
       // Pagamento iniciado com sucesso — actualizar pedido

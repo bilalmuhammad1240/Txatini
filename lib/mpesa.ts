@@ -13,24 +13,36 @@ const API_HOST =
     ? 'api.vm.co.mz'
     : 'api.sandbox.vm.co.mz';
 
-const API_PORT = 18352; // mesmo porto em sandbox e production
+const API_PORT = 18352;
 
 // =============================================
-// AUTENTICAÇÃO — RSA encrypt da API Key com Public Key
-// Gera o Bearer token para todas as chamadas
+// AUTENTICAÇÃO — RSA PKCS1 v1.5 com Public Key
+// A chave precisa de estar formatada com quebras de linha a cada 64 chars
 // =============================================
 function generateBearerToken(): string {
-  const publicKeyPem = `-----BEGIN PUBLIC KEY-----\n${MPESA_PUBLIC_KEY}\n-----END PUBLIC KEY-----`;
+  // Limpar a chave — remover espaços, newlines, e headers se existirem
+  const cleanKey = MPESA_PUBLIC_KEY
+    .replace(/-----BEGIN PUBLIC KEY-----/g, '')
+    .replace(/-----END PUBLIC KEY-----/g, '')
+    .replace(/\s+/g, '');
 
-  const encrypted = crypto.publicEncrypt(
-    {
-      key: publicKeyPem,
-      padding: crypto.constants.RSA_PKCS1_PADDING,
-    },
-    Buffer.from(MPESA_API_KEY)
-  );
+  // Reformatar com quebras de linha a cada 64 caracteres (formato PEM padrão)
+  const formattedKey = cleanKey.match(/.{1,64}/g)?.join('\n') ?? cleanKey;
+  const publicKeyPem = `-----BEGIN PUBLIC KEY-----\n${formattedKey}\n-----END PUBLIC KEY-----`;
 
-  return encrypted.toString('base64');
+  try {
+    const encrypted = crypto.publicEncrypt(
+      {
+        key: publicKeyPem,
+        padding: crypto.constants.RSA_PKCS1_PADDING, // M-Pesa usa PKCS1 v1.5, não OAEP
+      },
+      Buffer.from(MPESA_API_KEY, 'utf8')
+    );
+
+    return encrypted.toString('base64');
+  } catch (err) {
+    throw new Error(`Erro RSA: ${err instanceof Error ? err.message : String(err)}`);
+  }
 }
 
 // =============================================
@@ -125,8 +137,8 @@ export async function initiateC2B(params: MpesaC2BParams): Promise<MpesaResponse
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${bearerToken}`,
-        Origin: process.env.NEXT_PUBLIC_SUPABASE_URL || '*',
+        'Authorization': `Bearer ${bearerToken}`,
+        'Origin': 'developer.mpesa.vm.co.mz',
       },
       body: JSON.stringify(body),
     });
