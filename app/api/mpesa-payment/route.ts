@@ -1,0 +1,66 @@
+import { NextRequest, NextResponse } from 'next/server';
+import { initiateC2B } from '@/lib/mpesa';
+import { createClient } from '@/lib/supabase/server';
+
+export async function POST(request: NextRequest) {
+  try {
+    const body = await request.json();
+    const { orderId, amount, customerMsisdn, orderReference } = body;
+
+    if (!orderId || !amount || !customerMsisdn || !orderReference) {
+      return NextResponse.json(
+        { error: 'Dados incompletos para iniciar pagamento.' },
+        { status: 400 }
+      );
+    }
+
+    // Iniciar pagamento M-Pesa
+    const result = await initiateC2B({
+      amount: Number(amount),
+      customerMsisdn: String(customerMsisdn),
+      reference: `TXATINI-${orderReference}`.slice(0, 20), // max 20 chars
+      thirdPartyReference: orderId.slice(0, 20),           // UUID do pedido
+    });
+
+    const supabase = await createClient();
+
+    if (result.success) {
+      // Pagamento iniciado com sucesso — actualizar pedido
+      await supabase
+        .from('orders')
+        .update({
+          payment_status: 'confirmado',
+          mpesa_transaction_id: result.transactionId,
+        })
+        .eq('id', orderId);
+
+      return NextResponse.json({
+        success: true,
+        message: result.responseDesc,
+        transactionId: result.transactionId,
+        conversationId: result.conversationId,
+      });
+    } else {
+      // Falha — registar no pedido
+      await supabase
+        .from('orders')
+        .update({ payment_status: 'falhado' })
+        .eq('id', orderId);
+
+      return NextResponse.json(
+        {
+          success: false,
+          error: result.responseDesc,
+          code: result.responseCode,
+        },
+        { status: 402 }
+      );
+    }
+  } catch (err) {
+    console.error('[API /mpesa-payment] Erro:', err);
+    return NextResponse.json(
+      { error: 'Erro inesperado ao processar pagamento.' },
+      { status: 500 }
+    );
+  }
+}
