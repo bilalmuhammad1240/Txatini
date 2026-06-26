@@ -29,8 +29,8 @@ export async function POST(request: NextRequest) {
     const result = await initiateC2B({
       amount: Number(amount),
       customerMsisdn: String(customerMsisdn),
-      reference: `TXATINI-${orderReference}`.slice(0, 20), // max 20 chars
-      thirdPartyReference: orderId.slice(0, 20),           // UUID do pedido
+      reference: `TXATINI${orderReference}`.replace(/[^a-zA-Z0-9]/g, '').slice(0, 20),
+      thirdPartyReference: orderId.replace(/[^a-zA-Z0-9]/g, '').slice(0, 20),
     });
 
     const supabase = await createClient();

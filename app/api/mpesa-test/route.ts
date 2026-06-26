@@ -53,27 +53,26 @@ export async function GET() {
     return NextResponse.json({ steps }, { status: 200 });
   }
 
-  // PASSO 4 — Chamar API M-Pesa C2B (valor de teste: 1 MZN, número de teste)
+  // PASSO 4 — Chamar API M-Pesa C2B
   const env = process.env.MPESA_ENV ?? 'sandbox';
   const host = env === 'production' ? 'api.vm.co.mz' : 'api.sandbox.vm.co.mz';
   const url = `https://${host}:18352/ipg/v1x/c2bPayment/singleStage/`;
 
+  // Sandbox: número de teste associado à tua conta no portal
+  const testMsisdn = process.env.MPESA_TEST_PHONE ?? '258841511886';
+
   const body = {
-    input_TransactionReference: 'TXATINI-TEST001',
-    input_CustomerMSISDN: '258840000000', // número de teste sandbox
-    input_Amount: '1',
-    input_ThirdPartyReference: 'TEST-REF-001',
+    input_TransactionReference: 'T12344C',
+    input_CustomerMSISDN: testMsisdn,
+    input_Amount: '10',
+    input_ThirdPartyReference: 'T12344C',
     input_ServiceProviderCode: process.env.MPESA_SERVICE_PROVIDER_CODE ?? '',
   };
 
   steps['4_request'] = {
     url,
     body,
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${bearerToken.slice(0, 20)}...`,
-      'Origin': 'developer.mpesa.vm.co.mz',
-    },
+    note: 'input_TransactionReference e input_ThirdPartyReference max 20 chars, sem hífens',
   };
 
   try {

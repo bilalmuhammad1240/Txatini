@@ -106,8 +106,12 @@ export async function initiateC2B(params: MpesaC2BParams): Promise<MpesaResponse
 
   // Formatar número: garantir que começa com 258
   const formattedMsisdn = customerMsisdn.startsWith('258')
-    ? customerMsisdn
-    : `258${customerMsisdn.replace(/^0/, '')}`;
+    ? customerMsisdn.replace(/\s+/g, '')
+    : `258${customerMsisdn.replace(/^0/, '').replace(/\s+/g, '')}`;
+
+  // Referências: só alfanumérico, max 20 chars
+  const cleanReference = reference.replace(/[^a-zA-Z0-9]/g, '').slice(0, 20);
+  const cleanThirdParty = thirdPartyReference.replace(/[^a-zA-Z0-9]/g, '').slice(0, 20);
 
   let bearerToken: string;
   try {
@@ -125,10 +129,10 @@ export async function initiateC2B(params: MpesaC2BParams): Promise<MpesaResponse
   const url = `https://${API_HOST}:${API_PORT}/ipg/v1x/c2bPayment/singleStage/`;
 
   const body = {
-    input_TransactionReference: reference,
+    input_TransactionReference: cleanReference,
     input_CustomerMSISDN: formattedMsisdn,
     input_Amount: String(Math.round(amount)),
-    input_ThirdPartyReference: thirdPartyReference,
+    input_ThirdPartyReference: cleanThirdParty,
     input_ServiceProviderCode: MPESA_SERVICE_PROVIDER_CODE,
   };
 
