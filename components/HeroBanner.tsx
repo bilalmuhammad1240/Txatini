@@ -6,48 +6,69 @@ import { useState } from 'react';
 
 interface HeroBannerProps {
   tagline?: string;
+  logoUrl?: string;
+  bannerUrl?: string;
 }
 
-export default function HeroBanner({ tagline: _tagline }: HeroBannerProps) {
+export default function HeroBanner({
+  tagline = 'Sabor que lembra casa',
+  logoUrl = '',
+  bannerUrl = '',
+}: HeroBannerProps) {
   const [bannerError, setBannerError] = useState(false);
+  const [logoError, setLogoError] = useState(false);
+
+  // Determina a fonte da imagem: settings (Supabase) ou public/
+  const resolvedBanner = bannerUrl || '/banner.jpg';
+  const resolvedLogo = logoUrl || '/logo.png';
+  const hasBanner = !bannerError;
+  const hasLogo = !logoError;
 
   return (
     <section className="relative w-full overflow-hidden bg-txatini-green">
-
-      {/* Banner como imagem principal */}
       <div className="relative w-full" style={{ aspectRatio: '16/7', minHeight: '220px' }}>
-        {!bannerError ? (
+
+        {/* Banner */}
+        {hasBanner && (
           <Image
-            src="/banner.jpg"
-            alt="Txatiní — Sabor que lembra casa. Temperos Moçambicanos para o dia a dia."
+            src={resolvedBanner}
+            alt="Txatiní — Sabor que lembra casa"
             fill
             priority
             sizes="100vw"
             className="object-cover object-left-top"
             onError={() => setBannerError(true)}
+            {...(bannerUrl ? { unoptimized: true } : {})}
           />
-        ) : (
-          /* Fallback quando banner não carrega */
-          <div className="flex h-full flex-col items-start justify-center px-5" style={{ background: '#1E5C2A' }}>
-            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#B85510' }}>
-              Temperos Moçambicanos
-            </p>
-            <h1 className="text-3xl font-extrabold leading-tight text-white">
-              Sabor que lembra casa
-            </h1>
-            <p className="mt-2 text-sm" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              Entrega rápida em Maputo e arredores.
-            </p>
-          </div>
         )}
 
-        {/* Gradiente na base — só para legibilidade dos botões */}
+        {/* Overlay gradiente na base para legibilidade dos botões */}
         <div
-          className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-          style={{ background: 'linear-gradient(to top, rgba(30,92,42,0.85) 0%, transparent 100%)' }}
+          className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
+          style={{ background: 'linear-gradient(to top, rgba(30,92,42,0.88) 0%, transparent 100%)' }}
         />
 
-        {/* Botões sobrepostos — base do banner */}
+        {/* Logo no topo esquerdo */}
+        <div className="absolute top-4 left-4">
+          {hasLogo ? (
+            <Image
+              src={resolvedLogo}
+              alt="Txatiní"
+              width={100}
+              height={36}
+              className="object-contain"
+              style={{ mixBlendMode: 'multiply', filter: bannerUrl ? 'none' : 'none' }}
+              onError={() => setLogoError(true)}
+              {...(logoUrl ? { unoptimized: true } : {})}
+            />
+          ) : (
+            <span className="text-xl font-extrabold tracking-wide text-white drop-shadow">
+              TXATINÍ
+            </span>
+          )}
+        </div>
+
+        {/* Botões na base */}
         <div className="absolute bottom-4 left-4 right-4 flex gap-3">
           <Link
             href="/loja"
@@ -69,8 +90,17 @@ export default function HeroBanner({ tagline: _tagline }: HeroBannerProps) {
             WhatsApp
           </a>
         </div>
-      </div>
 
+        {/* Fallback quando sem banner: mostrar tagline */}
+        {!hasBanner && (
+          <div className="absolute inset-0 flex flex-col justify-center px-5">
+            <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: '#B85510' }}>
+              Temperos Moçambicanos
+            </p>
+            <h1 className="text-3xl font-extrabold leading-tight text-white">{tagline}</h1>
+          </div>
+        )}
+      </div>
     </section>
   );
 }

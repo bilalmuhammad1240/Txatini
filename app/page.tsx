@@ -9,25 +9,22 @@ export default async function HomePage() {
   const supabase = await createClient();
 
   const [{ data: allProducts }, { data: settingsRows }] = await Promise.all([
-    supabase
-      .from('products')
-      .select('*')
-      .eq('active', true)
-      .order('created_at', { ascending: false }),
+    supabase.from('products').select('*').eq('active', true).order('created_at', { ascending: false }),
     supabase.from('settings').select('key, value'),
   ]);
 
   const products = (allProducts as Product[]) ?? [];
-
   const settings: SettingsMap = Object.fromEntries(
     (settingsRows ?? []).map((r: { key: string; value: string }) => [r.key, r.value])
   );
 
-  const tagline = settings.store_tagline || 'Sabor que lembra casa';
-
   return (
     <div>
-      <HeroBanner tagline={tagline} />
+      <HeroBanner
+        tagline={settings.store_tagline || 'Sabor que lembra casa'}
+        logoUrl={settings.logo_url || ''}
+        bannerUrl={settings.banner_url || ''}
+      />
       <Suspense fallback={null}>
         <HomeLojaClient initialProducts={products} />
       </Suspense>
