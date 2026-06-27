@@ -48,26 +48,6 @@ export default function HeroBanner({
           style={{ background: 'linear-gradient(to top, rgba(30,92,42,0.88) 0%, transparent 100%)' }}
         />
 
-        {/* Logo no topo esquerdo */}
-        <div className="absolute top-4 left-4">
-          {hasLogo ? (
-            <Image
-              src={resolvedLogo}
-              alt="Txatiní"
-              width={100}
-              height={36}
-              className="object-contain"
-              style={{ mixBlendMode: 'multiply', filter: bannerUrl ? 'none' : 'none' }}
-              onError={() => setLogoError(true)}
-              {...(logoUrl ? { unoptimized: true } : {})}
-            />
-          ) : (
-            <span className="text-xl font-extrabold tracking-wide text-white drop-shadow">
-              TXATINÍ
-            </span>
-          )}
-        </div>
-
         {/* Botões na base */}
         <div className="absolute bottom-4 left-4 right-4 flex gap-3">
           <Link
